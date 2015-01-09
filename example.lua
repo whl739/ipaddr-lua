@@ -4,7 +4,7 @@ local insert = table.insert
 local sort = table.sort
 
 local function compare_networks(a, b)
-    return a:compare(b)
+    return a < b
 end
 
 local ipranges = {}
@@ -25,8 +25,7 @@ local test = '1.0.0.1'
 ip = ipaddr:new(test:match('^%s*(%d+)%.(%d+)%.(%d+)%.(%d+)'))
 print(ip.netmask, ip.network, ip.broadcast, ip.str(ip))
 for _, r in ipairs(ipranges) do
-    local ret = compare_networks(r, ip)
-    if not ret and r.contains(r, ip) then
+    if r<ip and r:contains(ip) then
         print(r.network, ip.network, r.broadcast)
     else
         print(false)

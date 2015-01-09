@@ -39,7 +39,7 @@ local function allok(...)
 end
 
 local ipv4_length = 32
-local all_ones = lshift(2, ipv4_length) - 1
+local all_ones = lshift(2, ipv4_length - 1) - 1
 
 function new(self, ...)
     local t = {}
